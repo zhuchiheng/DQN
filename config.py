@@ -1,3 +1,4 @@
+from keras.layers.advanced_activations import LeakyReLU, PReLU
 class DDPGConfig(object):
     def __init__(self, n_stock):
         self.device = '/gpu:0'
