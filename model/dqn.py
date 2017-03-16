@@ -284,7 +284,7 @@ class DQN(object):
         self.max_idx_target = tf.placeholder(tf.int32, [None, 3], "double_idx")
         Q_max = tf.gather_nd(Q_target, self.max_idx_target)
         Q_max = tf.reshape(Q_max, [-1, self.n_stock, 1])
-        Q_value = tf.concat(2, (tf.zeros_like(Q_max), Q_max))
+        Q_value = tf.concat((tf.zeros_like(Q_max), Q_max), 2)
         self.target_value = self.reward  + self.gamma * Q_value
         self.target_value = tf.cast(self.target_value, tf.float32)
         self.target = tf.placeholder(tf.float32, [None, self.n_stock, 2], name="target_value")
