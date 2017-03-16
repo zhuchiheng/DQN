@@ -402,7 +402,7 @@ class DDPG(object):
         smoothed = []
         for n_sm in range(2, self.n_smooth + 2):
             smoothed.append(
-                tf.reduce_mean(tf.pack([input[:, self.n_history - st - self.history_length:self.n_history - st, :, :]
+                tf.reduce_mean(tf.stack([input[:, self.n_history - st - self.history_length:self.n_history - st, :, :]
                                         for st in range(n_sm)]),0))
         # downsample data
         down = []
