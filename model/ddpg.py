@@ -407,7 +407,7 @@ class DDPG(object):
         # downsample data
         down = []
         for n_dw in range(2, self.n_down + 2):
-            sampled_ = tf.pack([input[:, idx, :, :] 
+            sampled_ = tf.stack([input[:, idx, :, :] 
                                 for idx in range(self.n_history-n_dw*self.history_length, self.n_history, n_dw)])
             down.append(tf.transpose(sampled_, [1, 0, 2, 3]))
         return raw, smoothed, down
